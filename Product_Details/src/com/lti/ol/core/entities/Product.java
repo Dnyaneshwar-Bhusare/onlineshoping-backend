@@ -2,14 +2,19 @@ package com.lti.ol.core.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity 
-@Table(name="PRODUCT_DETAILS")
+@Table(name="PRODUCT_TABLE")
 public class Product {
 	
 	@Id
+	@GeneratedValue(generator="productid_seq", strategy=GenerationType.SEQUENCE)
+	@SequenceGenerator(name="productid_seq", sequenceName ="productid_seq", allocationSize=1)
 	@Column(name="productid")
 	private int pid;
 	
@@ -25,17 +30,21 @@ public class Product {
 	@Column(name="categoryid")
 	private int cid;
 	
+	@Column(name="IMAGEPATH")
+	private String image;
+	
 	public Product() {
 		
 	}
 
-	public Product(int pid, String pname, int price, String desc, int cid) {
+	public Product(int pid, String pname, int price, String desc, int cid, String img) {
 		super();
 		this.pid = pid;
 		this.pname = pname;
 		this.price = price;
 		this.desc = desc;
 		this.cid = cid;
+		this.image = image;
 	}
 
 	public int getPid() {
@@ -78,9 +87,17 @@ public class Product {
 		this.cid = cid;
 	}
 
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
 	@Override
 	public String toString() {
 		return "Product [pid=" + pid + ", pname=" + pname + ", price=" + price + ", desc=" + desc + ", cid=" + cid
-				+ "]";
+				+ ", image=" + image + "]";
 	}
 }

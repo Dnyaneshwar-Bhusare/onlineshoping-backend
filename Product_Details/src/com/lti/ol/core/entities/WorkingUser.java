@@ -5,18 +5,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-@Entity  
+@Entity
 @Table(name="USER_DETAILS")
-public class User {
+public class WorkingUser {
 	
 	@Id
-	@GeneratedValue(generator="login_seq", strategy=GenerationType.SEQUENCE)
-	@SequenceGenerator(name="login_seq", sequenceName ="login_seq", allocationSize=1)
 	@Column(name="USERID")
+	@GeneratedValue(generator="login_seq", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "login_seq", sequenceName = "login_seq", allocationSize = 1)
 	private int uid;
 	
 	@Column(name="NAME")
@@ -29,25 +28,25 @@ public class User {
 	private double mblNo;
 	
 	@Column(name="PASSWORD")
-	private String pwd;
+	private String password;
 	
 	
 	@Column(name="ADDRESSID")
 	private int addrsid;
 
 
-	public User(int uid, String uname, String email, double mblNo, String pwd, int addrsid) {
+	public WorkingUser(int uid, String uname, String email, double mblNo, String password, int addrsid) {
 		super();
 		this.uid = uid;
 		this.uname = uname;
 		this.email = email;
 		this.mblNo = mblNo;
-		this.pwd = pwd;
+		this.password = password;
 		this.addrsid = addrsid;
 	}
 
 
-	public User() {
+	public WorkingUser() {
 		super();
 	}
 
@@ -92,13 +91,13 @@ public class User {
 	}
 
 
-	public String getPwd() {
-		return pwd;
+	public String getPassword() {
+		return password;
 	}
 
 
-	public void setPwd(String pwd) {
-		this.pwd = pwd;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 
@@ -114,15 +113,14 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [uid=" + uid + ", uname=" + uname + ", email=" + email + ", mblNo=" + mblNo + ", pwd=" + pwd
+		return "Login [uid=" + uid + ", uname=" + uname + ", email=" + email + ", mblNo=" + mblNo + ", password=" + password
 				+ ", addrsid=" + addrsid + "]";
 	}
-	
-	
-}
 
-	
-	
-	
-	
-	
+
+	public void setResult(boolean b) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

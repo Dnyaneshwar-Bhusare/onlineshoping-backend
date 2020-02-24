@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.lti.ol.core.entities.User;
-import com.lti.ol.core.exceptions.UserException;
+import com.lti.ol.core.exceptions.PrException;
 
 
 @Repository
@@ -22,7 +22,7 @@ public class UserDaoImpl implements UserDao {
 	private EntityManager manager;
 	
 	@Override
-	public ArrayList<User> getUserList() throws UserException {
+	public ArrayList<User> getUserList() throws PrException {
 		Query qry = manager.createQuery("FROM User");
 		ArrayList<User> getUserList = (ArrayList<User>) qry.getResultList();		
 		return getUserList;	
@@ -30,13 +30,13 @@ public class UserDaoImpl implements UserDao {
 	
 	@Transactional(propagation=Propagation.REQUIRED)
 	@Override
-	public boolean insertnewuser(User user) throws UserException {
+	public boolean insertnewuser(User user) throws PrException {
 		manager.persist(user);
 		return true;
 	}
 
 	@Override
-	public User getUserId(int i) throws UserException {
+	public User getUserId(int i) throws PrException {
 		
 		return manager.find(User.class, i);
 	}

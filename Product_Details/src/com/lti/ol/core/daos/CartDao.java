@@ -6,5 +6,6 @@ import com.lti.ol.core.entities.Product;
 import com.lti.ol.core.exceptions.PrException;
 
 public interface CartDao {
-	public String addToCart(CartItem cart) throws PrException;
+	public boolean addToCart(Cart cart) throws PrException;
+	public Cart getCartIdByUserId(int userId) throws PrException;
 }
