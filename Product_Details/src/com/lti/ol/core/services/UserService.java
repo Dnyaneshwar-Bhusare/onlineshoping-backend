@@ -1,3 +1,9 @@
+/**
+ * @Author: Sonali, Grishma, Supraja, Dnyaneshwar 
+ * @CreatedOn:21/02/2020
+ * @LastUpdate:24/02/2020
+ */
+
 package com.lti.ol.core.services;
 
 import java.util.ArrayList;
@@ -5,6 +11,7 @@ import java.util.List;
 
 import com.lti.ol.core.entities.Cart;
 import com.lti.ol.core.entities.CartItem;
+import com.lti.ol.core.entities.CartTable;
 import com.lti.ol.core.entities.Category;
 import com.lti.ol.core.entities.OrderDetail;
 import com.lti.ol.core.entities.OrderItem;
@@ -30,14 +37,14 @@ public interface UserService {
 	public ArrayList<Category> getCategoryList() throws PrException;
 	public Category getCategoryId(int d) throws PrException;
 	
-	//Cart
-	public boolean addToCart(Cart cart) throws PrException;
-	public Cart getCartIdByUserId(int userId) throws PrException;
+	//CartTable
+	public boolean addToCartTable(CartTable cartTable) throws PrException;
+	public CartTable getDetailByUserId(int userId) throws PrException;
 	
-	//CartItem
+	/*//CartItem
 	public List<CartItem> getCartItemListByCartId(int CartId) throws PrException;
 	public boolean addCartItem(CartItem cartItem) throws PrException;
-
+*/
 	//ProductStock
 	public List<ProductStock> getStockListByRetailerId(int retailerId) throws PrException;
 	
@@ -46,7 +53,7 @@ public interface UserService {
 	public List<OrderItem> getOrderListByUserId(int uid) throws PrException;
 	
 	// Login-Signup
-	public boolean login(String email,String password) throws PrException;
+	public List<WorkingUser> login(WorkingUser login) throws PrException;
 	public boolean signup(WorkingUser login) throws PrException;
 	
 	

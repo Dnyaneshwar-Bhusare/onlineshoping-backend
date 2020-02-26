@@ -1,5 +1,14 @@
+/**
+ * @Author: Grishma
+ * @CreatedOn:21/02/2020
+ * @LastUpdate:24/02/2020
+ */
+
 package com.lti.ol.core.daos;
 
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -19,24 +28,19 @@ public class LoginDaoImpl implements LoginDao{
 	private EntityManager manager;
 
 	@Override
-	public boolean login(String email, String password) throws PrException {
+	public List<WorkingUser> login(WorkingUser login) throws PrException {
 		// TODO Auto-generated method stub
+		System.out.println(login.getEmail());
 		String qry = "select u from WorkingUser u where u.email=:email and u.password=:password";
 		Query q = manager.createQuery(qry);
-		q.setParameter("email", email);
-		q.setParameter("password", password);
-		WorkingUser login = (WorkingUser) q.getSingleResult();
-		if(login.getEmail().equals(email) && login.getPassword().equals(password)){
-			System.out.println("true");
-			return true;
-		}
-		else
-		{
-			System.out.println("false");
-			return false;
-		}
+		q.setParameter("email", login.getEmail());
+		q.setParameter("password", login.getPassword());
+		List<WorkingUser> user = q.getResultList();
+//		List<WorkingUser> log = new ArrayList<>();
+//		log.add(login);
+		
+			return user;	
 	}
-
 	@Transactional(propagation=Propagation.REQUIRED)
 	@Override
 	public boolean signup(WorkingUser login) throws PrException {

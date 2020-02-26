@@ -1,3 +1,9 @@
+/**
+ * @Author:  Dnyaneshwar, Sonali, Grishma, Supraja
+ * @CreatedOn:21/02/2020
+ * @LastUpdate:24/02/2020
+ */
+
 package com.lti.ol.core.services;
 
 import java.util.ArrayList;
@@ -18,6 +24,7 @@ import com.lti.ol.core.daos.ProductStockDao;
 import com.lti.ol.core.daos.UserDao;
 import com.lti.ol.core.entities.Cart;
 import com.lti.ol.core.entities.CartItem;
+import com.lti.ol.core.entities.CartTable;
 import com.lti.ol.core.entities.Category;
 import com.lti.ol.core.entities.OrderDetail;
 import com.lti.ol.core.entities.OrderItem;
@@ -100,16 +107,17 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	//Cart
-	@Override
-	public boolean addToCart(Cart cart) throws PrException {
-		return cartDao.addToCart(cart);
-	}
-	@Override
-	public Cart getCartIdByUserId(int userId) throws PrException {
-		return cartDao.getCartIdByUserId(userId);
-	}
+		@Override
+		public boolean addToCartTable(CartTable cartTable) throws PrException {
+			return cartDao.addToCartTable(cartTable);
+		}
+		
+		@Override
+		public CartTable getDetailByUserId(int userId) throws PrException {
+			return cartDao.getDetailByUserId(userId);
+		}
 	
-	//CartItem
+	/*//CartItem
 	@Override
 	public List<CartItem> getCartItemListByCartId(int CartId) throws PrException {
 		return cartItemDao.getCartItemListByCartId(CartId);
@@ -119,7 +127,7 @@ public class UserServiceImpl implements UserService {
 	public boolean addCartItem(CartItem cartItem) throws PrException {
 		return cartItemDao.addCartItem(cartItem);
 	}
-
+*/
 	//ProductStock
 	@Override
 	public List<ProductStock> getStockListByRetailerId(int retailerId) throws PrException {
@@ -140,9 +148,10 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public boolean login(String email, String password) throws PrException {
+	public List<WorkingUser> login(WorkingUser login) throws PrException {
 		// TODO Auto-generated method stub
-		return loginDao.login(email, password);
+		List<WorkingUser> login1 = loginDao.login(login);
+		return login1;
 	}
 
 	@Override

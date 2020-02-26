@@ -1,3 +1,9 @@
+/**
+ * @Author: Dnyaneshwar, Sonali, Grishma, Supraja
+ * @CreatedOn:21/02/2020
+ * @LastUpdate:24/02/2020
+ */
+
 package com.lti.ol.web;
 
 import java.util.ArrayList;
@@ -18,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.lti.ol.core.entities.Cart;
 import com.lti.ol.core.entities.CartItem;
+import com.lti.ol.core.entities.CartTable;
 import com.lti.ol.core.entities.Category;
 import com.lti.ol.core.entities.OrderDetail;
 import com.lti.ol.core.entities.OrderItem;
@@ -90,7 +97,7 @@ public class PrController {
 
 	// Category Table
 
-	@GetMapping(value = "/CategoryList", produces = "application/json")
+	@GetMapping(value = "/categoryList", produces = "application/json")
 	public @ResponseBody List<Category> getCategoryList() throws PrException {
 		ArrayList<Category> categoryList = null;
 		categoryList = userServices.getCategoryList();
@@ -104,18 +111,18 @@ public class PrController {
 
 	// Cart Table
 
-	@PostMapping(value = "/addCartList", consumes = "application/json")
-	public void addToCart(@RequestBody Cart cart) throws PrException {
-		System.out.println(cart);
-		userServices.addToCart(cart);
-	}
+		@PostMapping(value = "/addCartTable", consumes = "application/json")
+		public void addToCartTable(@RequestBody CartTable cartTable) throws PrException {
+			System.out.println(cartTable);
+			userServices.addToCartTable(cartTable);
+		}
 
-	@PutMapping(value = "/fetchCartIdByUserId", consumes = "application/json")
-	public @ResponseBody Cart getCartIdByUserId(@RequestBody int cartId) throws PrException {
-		return userServices.getCartIdByUserId(cartId);
-	}
+		@PutMapping(value = "/fetchCartTableByUserId", consumes = "application/json")
+		public @ResponseBody CartTable getDetailByUserId(@RequestBody int userId) throws PrException {
+			return userServices.getDetailByUserId(userId);
+		}
 
-	// CartItem Table
+	/*// CartItem Table
 
 	@GetMapping(value = "/fetchCartItemListByCartId", produces = "application/json")
 	public @ResponseBody List<CartItem> getCartItemListByCartId(@RequestParam("id") int cartId) throws PrException {
@@ -137,7 +144,7 @@ public class PrController {
 		System.out.println(stockList);
 		return stockList;
 	}
-
+*/
 	// Order Detail
 	
 	@PostMapping(value = "/buyProduct", consumes = "application/json")
@@ -155,8 +162,8 @@ public class PrController {
 	//Login-Signup
 	
 	@PostMapping(value="/login",consumes="application/json")
-	public @ResponseBody boolean login(@RequestBody WorkingUser login) throws PrException{
-		return userServices.login(login.getEmail(), login.getPassword());
+	public @ResponseBody List<WorkingUser> login(@RequestBody WorkingUser login) throws PrException{
+		return userServices.login(login);
 	}
 	
 	@PostMapping(value="/signup",consumes="application/json")
